@@ -13,7 +13,7 @@ class CustomUser(User):
         
 
 class Serial(models.Model):
-    serial_number = models.CharField(db_column='SerialID', primary_key = True, max_length=50, verbose_name='시리얼 번호', help_text='This serial number must be unique.')
+    serial_number = models.CharField(db_column='SerialID', unique=True, max_length=50, verbose_name='시리얼 번호', help_text='This serial number must be unique.')
     created_at = models.DateTimeField(db_column='CRE_DT', verbose_name='생성 날짜', help_text='This value is entered automatically.', null=True)
     deleted_at = models.DateTimeField(db_column='DEL_DT', verbose_name='만료 날짜', help_text='If you enter the date here, this device will no longer be available.', null=True, blank=True)
     
