@@ -14,8 +14,8 @@ class CustomUser(User):
 
 class Serial(models.Model):
     serial_number = models.CharField(db_column='SerialID', unique=True, max_length=50, verbose_name='시리얼 번호', help_text='This serial number must be unique.')
-    created_at = models.DateTimeField(db_column='CRE_DT', verbose_name='생성 날짜', help_text='This value is entered automatically.', null=True)
-    deleted_at = models.DateTimeField(db_column='DEL_DT', verbose_name='만료 날짜', help_text='If you enter the date here, this device will no longer be available.', null=True, blank=True)
+    created_at = models.DateTimeField(db_column='CRE_DT', verbose_name='생성 날짜', help_text='This value is entered automatically.', null=True, blank=True, auto_now_add=True)
+    deleted_at = models.DateTimeField(db_column='DEL_DT', verbose_name='만료 날짜', help_text='If you enter the date here, this device will no longer be available.', auto_now=True, null=True, blank=True)
     
     class Meta:
         db_table = 'serial_info'
@@ -140,8 +140,8 @@ class Attachment(models.Model):
     
     class Meta:
         db_table = 'attachment_list'
-        verbose_name = '권한 정보'
-        verbose_name_plural = '권한 정보'            
+        verbose_name = '미디어 정보'
+        verbose_name_plural = '미디어 정보'            
         constraints = [
             models.UniqueConstraint(
                 fields=['device', 'user'],
